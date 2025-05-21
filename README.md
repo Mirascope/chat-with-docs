@@ -2,6 +2,14 @@
 
 Building a "Chat with Docs" solution for Mirascope, demonstrating how to build an AI application with best practices.
 
+## Quick Start
+
+Start the chat application with:
+
+```bash
+uv run chat_with_docs/main.py
+```
+
 ## Project Philosophy
 
 Building AI can feel overwhelming, but it doesn't have to be. This project demonstrates how to incrementally build a real AI system using evaluation-driven development:
