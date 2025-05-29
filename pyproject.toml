@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Chat with your documentation"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "lilypad-sdk[anthropic,gemini,openai]>=0.2.3",
     "mirascope[anthropic,gemini,openai]>=1.24.0",
@@ -54,7 +54,7 @@ exclude = [
     "venv",
 ]
 line-length = 88
-target-version = "py311"
+target-version = "py310"
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]

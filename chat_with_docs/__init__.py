@@ -1,3 +1,7 @@
 """Chat with your documentation."""
 
-__version__ = "0.1.0"
+import importlib.metadata
+
+__version__ = importlib.metadata.version("chat-with-docs")
+
+__all__ = ["__version__"]
