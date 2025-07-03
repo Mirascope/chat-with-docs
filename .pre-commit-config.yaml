@@ -5,16 +5,20 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+        exclude: ^queries/
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: "v0.9.7"
     hooks:
       - id: ruff
         args: [--fix]
+        exclude: ^queries/
       - id: ruff-format
+        exclude: ^queries/
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.396
     hooks:
       - id: pyright
+        exclude: ^queries/
   - repo: local
     hooks:
       - id: tests
