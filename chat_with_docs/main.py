@@ -92,7 +92,7 @@ def get_docs(user_message: str, k: int = 3) -> list[str]:
 
 
 @lilypad.trace(versioning="automatic")
-def bot_response(user_message: str) -> str:
+async def bot_response(user_message: str) -> str:
     docs = get_docs(user_message)
     return bot_response_with_docs(user_message, docs).content
 

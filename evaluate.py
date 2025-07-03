@@ -2,6 +2,7 @@
 """Evaluation script for processing query files."""
 
 import argparse
+import asyncio
 from pathlib import Path
 
 from pydantic import BaseModel
@@ -41,7 +42,7 @@ def load_queries(queries_dir: str) -> list[Query]:
     return queries
 
 
-def evaluate_queries(queries_dir: str) -> None:
+async def evaluate_queries(queries_dir: str) -> list[str]:
     """Load queries and process each one through bot_response.
 
     Args:
@@ -50,15 +51,13 @@ def evaluate_queries(queries_dir: str) -> None:
     try:
         queries = load_queries(queries_dir)
         print(f"Loaded {len(queries)} queries from {queries_dir}")
-
-        for query in queries:
-            print(f"\n--- Processing Query ID: {query.id} ---")
-
-            bot_response(query.content)
+        tasks = [bot_response(query.content) for query in queries]
+        results = await asyncio.gather(*tasks)
+        return results
 
     except Exception as e:
         print(f"Error during evaluation: {e}")
-        return
+        raise
 
 
 def main() -> None:
@@ -67,7 +66,7 @@ def main() -> None:
     parser.add_argument("queries_dir", help="Directory containing markdown query files")
 
     args = parser.parse_args()
-    evaluate_queries(args.queries_dir)
+    asyncio.run(evaluate_queries(args.queries_dir))
 
 
 if __name__ == "__main__":
